@@ -60,13 +60,16 @@ fi
 
 # Process input
 case "$option" in
-  1) echo "[*] Activating ROG 8 Resulution..."
+  1) echo ""
+     echo "[*] Activating ROG 8 Resulution..."
      sleep 1
      echo "[✓] ROG 8 Resulution Successfully Activated "
+     echo ""
      sleep 1 ;;
   2) echo "[*] Activating IP 11 Resulution..."
      sleep 1
      echo "[✓] IP 11 Resulution Successfully Activated "
+     echo ""
      sleep 1 ;;
   3) echo "[*] Activating Extreme Sensitive Touch..."
      sleep 1
