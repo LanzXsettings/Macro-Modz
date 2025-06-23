@@ -31,7 +31,6 @@ get_device_info() {
     echo "File Version    : V1"
     echo "File Type       : Medium"
 
-    echo ""
 }
 
 get_device_info
