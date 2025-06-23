@@ -15,7 +15,7 @@ EOF
 get_device_info() {
     echo ""
     echo "=============================="
-    echo "      DEVICE INFORMATION      "
+    echo "         INFORMATION          "
     echo "=============================="
     echo ""
 
@@ -27,7 +27,8 @@ get_device_info() {
     echo "Model          : $MODEL"
     echo "Manufacturer   : $MANUFACTURER"
     echo "Android Version: $ANDROID_VERSION"
-    echo "Device Name    : $DEVICE_NAME"
+    echo "Device Type    : $DEVICE_NAME"
+    echo "File Version   : V1"
     echo "File Type      : Medium"
     
     echo ""
