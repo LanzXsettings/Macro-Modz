@@ -39,11 +39,12 @@ get_device_info
 echo "=============================="
 echo "Advanced Resolution Changer"
 echo "=============================="
-echo "1. ROG 8 Resolution"
-echo "2. IP 11 Resolution"
-echo "3. Extreme Sensitive Touch"
-echo "4. Exit"
-printf "Choose [1-4]: \n"
+echo "1. Medium Resolution"
+echo "2. Extreme Resolution"
+echo "3. Ultimate Resolution"
+echo "4. Extreme Sensitive Touch"
+echo "5. Exit"
+printf "Choose [1-5]: \n"
 
 read -r option
 echo ""
@@ -57,24 +58,30 @@ fi
 # Process input
 case "$option" in
     1)
-        echo "[*] Activating ROG 8 Resolution..."
+        echo "[*] Activating Medium Resolution..."
         sleep 1
-        echo "[✓] ROG 8 Resolution Successfully Activated"
+        echo "[✓] Medium Resolution Successfully Activated"
         sleep 1
         ;;
     2)
-        echo "[*] Activating IP 11 Resolution..."
+        echo "[*] Activating Extreme Resolution..."
         sleep 1
-        echo "[✓] IP 11 Resolution Successfully Activated"
+        echo "[✓] Extreme Resolution Successfully Activated"
         sleep 1
         ;;
     3)
+        echo "[*] Activating Ultimate Resolution..."
+        sleep 1
+        echo "[✓] Ultimate Resolution Successfully Activated"
+        sleep 1
+        ;;
+    4)
         echo "[*] Activating Extreme Sensitive Touch..."
         sleep 1
         echo "[✓] Extreme Sensitive Touch Successfully Activated"
         sleep 1
         ;;
-    4)
+    5)
         echo "Goodbye!"
         exit 0
         ;;
