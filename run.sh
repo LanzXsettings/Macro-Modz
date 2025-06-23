@@ -46,7 +46,8 @@ echo "1. ROG 8 Resolution"
 echo "2. IP 11 Resolution"
 echo "3. Extreme Sensitive Touch"
 echo "4. Exit"
-printf "Choose [1-4]: "
+printf "Choose [1-4]: 
+"
 
 read -r option
 echo ""
