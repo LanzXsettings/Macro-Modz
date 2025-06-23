@@ -49,3 +49,29 @@ rmvv() {
         settings delete global sysui_powerui_enabled
         settings delete global ble_scan_always_enabled
     } >/dev/null 2>&1
+
+{
+# Enable Adaptive Power Saver and disable Fixed Performance Mode
+cmd power set-adaptive-power-saver-enabled true
+cmd power set-fixed-performance-mode-enabled false
+cmd power set-mode 1
+
+# Override Thermal Status to 1
+cmd thermalservice override-status 1
+
+# Allow Google Play Services and IMS background activities
+for app in com.google.android.gms com.google.android.ims; do
+  cmd appops set $app RUN_IN_BACKGROUND allow
+  cmd appops set $app RUN_ANY_IN_BACKGROUND allow
+  cmd appops set $app START_FOREGROUND allow
+  cmd appops set $app INSTANT_APP_START_FOREGROUND allow
+done
+
+# Disable High-Performance Mode
+settings put system high_performance_mode_on 0
+settings put system power_save_type_performance 0
+
+# Enable Low Power Mode
+settings put global low_power_sticky 0
+settings put global low_power 1
+} >/dev/null 2>&1
