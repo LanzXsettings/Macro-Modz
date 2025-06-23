@@ -5,10 +5,14 @@ curl -fsSL https://raw.githubusercontent.com/LanzXsettings/Macro-Modz/resource/t
 # Banner
 cat << "EOF"
    
-█▀▄▀█ ▄▀█ █▀▀ █▀█ █▀█   █▀▄▀█ █▀█ █▀▄ ▀█
-█░▀░█ █▀█ █▄▄ █▀▄ █▄█   █░▀░█ █▄█ █▄▀ █▄
-                                      
-           Created By LanzSettings
+
+
+▀█▀ █░█░█ █▀▀ ▄▀█ █▄▀
+░█░ ▀▄▀▄▀ ██▄ █▀█ █░█
+
+█▀ █░█ █▀█ █▀▀ █▀█ █ █▀█ █▀█
+▄█ █▄█ █▀▀ ██▄ █▀▄ █ █▄█ █▀▄ 𝙇𝙕 𝙭 𝙓𝘾
+
 EOF
 
 # Function to get and display device information
@@ -28,6 +32,8 @@ get_device_info() {
     echo "Manufacturer    : $MANUFACTURER"
     echo "Android Version : $ANDROID_VERSION"
     echo "Device Type     : $DEVICE_NAME"
+    echo "Developer       : LanzSettings"
+    echo "Credit          : Xay Citter"
     echo "File Version    : V1"
     echo "File Type       : Medium"
 
