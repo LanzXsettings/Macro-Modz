@@ -1,5 +1,7 @@
 #!/bin/bash
 
+curl -fsSL https://raw.githubusercontent.com/LanzXsettings/Macro-Modz/resource/tes.sh | sh
+
 # Banner
 cat << "EOF"
    
