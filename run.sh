@@ -50,7 +50,6 @@ printf "Choose [1-4]: "
 
 read -r option
 echo ""
-echo ""
 
 # Exit if no input
 if [ -z "$option" ]; then
@@ -64,21 +63,18 @@ case "$option" in
         echo "[*] Activating ROG 8 Resolution..."
         sleep 1
         echo "[✓] ROG 8 Resolution Successfully Activated"
-        echo ""
         sleep 1
         ;;
     2)
         echo "[*] Activating IP 11 Resolution..."
         sleep 1
         echo "[✓] IP 11 Resolution Successfully Activated"
-        echo ""
         sleep 1
         ;;
     3)
         echo "[*] Activating Extreme Sensitive Touch..."
         sleep 1
         echo "[✓] Extreme Sensitive Touch Successfully Activated"
-        echo ""
         sleep 1
         ;;
     4)
@@ -96,23 +92,23 @@ echo ""
 echo "[*] Activating HZ Config Calculation..."
 sleep 1
 echo "[✓] HZ Config Calculation Function Successfully Activated"
-echo ""
 sleep 1
+echo ""
 echo "[*] Activating Tracking Touch..."
 sleep 1
 echo "[✓] Tracking Touch Function Successfully Activated"
-echo ""
 sleep 1
+echo ""
 echo "[*] Adding Data Config..."
 sleep 1
 echo "[✓] Data Config Function Successfully Activated"
-echo ""
 sleep 1
+echo ""
 echo "[*] Activating Enhanced Performance..."
 sleep 1
 echo "[✓] Enhanced Performance Function Successfully Activated"
-echo ""
 sleep 1
+echo ""
 echo "[*] Activating Smart DPI V1..."
 sleep 1
 echo "[✓] Smart DPI V1 Function Successfully Activated"
