@@ -40,13 +40,13 @@ get_device_info
 
 # Menu
 echo "=============================="
-echo "    Advanced Resolution Changer"
+echo "  Advanced Resolution Changer "
 echo "=============================="
 echo "1. ROG 8 Resolution"
 echo "2. IP 11 Resolution"
 echo "3. Extreme Sensitive Touch"
 echo "4. Exit"
-printf "Choose [1-4]: \n>"
+printf "Choose [1-4]: \n"
 
 read -r option
 echo ""
