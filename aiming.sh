@@ -13,13 +13,11 @@ detect_game() {
 
 run_game_setup() {
   if [ "$selected_game" = "com.dts.freefireth" ]; then
-    unzip /sdcard/vortex/bin/DataConfig1 -d /sdcard/Android/data/
     cmd game downscale 1.8 com.dts.freefireth
     cmd device_config put game_overlay com.dts.freefireth mode=2,downscaleFactor=1.8
     cmd package compile -m speed --secondary-dex com.dts.freefireth
     cmd appops set com.dts.freefireth RUN_IN_BACKGROUND
   elif [ "$selected_game" = "com.dts.freefiremax" ]; then
-    unzip /sdcard/vortex/bin/DataConfig -d /sdcard/Android/data/
     cmd game downscale 1.8 com.dts.freefiremax
     cmd device_config put game_overlay com.dts.freefiremax mode=2,downscaleFactor=1.8
     cmd package compile -m speed --secondary-dex com.dts.freefiremax
