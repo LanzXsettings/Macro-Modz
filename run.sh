@@ -36,21 +36,26 @@ get_device_info() {
     echo "Credit          : Xay Citter"
     echo "File Version    : V1"
     echo "File Type       : Medium"
-
+    echo ""
+    echo "=============================="
+    echo ""
 }
 
 get_device_info
 
 # Menu
 echo "=============================="
-echo "Advanced Resolution Changer"
+echo "  Advanced Resolution Changer"
 echo "=============================="
+echo ""
 echo "1. Medium Resolution"
 echo "2. Extreme Resolution"
 echo "3. Ultimate Resolution"
 echo "4. Extreme Sensitive Touch"
 echo "5. Exit"
 printf "Choose [1-5]: \n"
+echo ""
+echo "=============================="
 
 read -r option
 echo ""
