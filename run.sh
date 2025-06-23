@@ -50,6 +50,7 @@ printf "Choose [1-4]: "
 
 read -r option
 echo ""
+echo ""
 
 # Exit if no input
 if [ -z "$option" ]; then
@@ -77,6 +78,7 @@ case "$option" in
 esac
 
 # Only runs for valid options 1-3
+echo ""
 echo "[*] Activating HZ Config Calculation..."
 sleep 1
 echo "[✓] HZ Config Calculation Function Successfully Activated "
