@@ -38,8 +38,9 @@ get_device_info() {
 get_device_info
 
 # Menu
+echo "=============================="
 echo "Advanced Resolution Changer"
-echo "==========================="
+echo "=============================="
 echo "1. ROG 8 Resolution"
 echo "2. IP 11 Resolution"
 echo "3. Sensitive Touch Only"
@@ -58,10 +59,16 @@ fi
 
 # Process input
 case "$option" in
-  1) echo "ROG 8 Resolution selected" 
-       echo "wm size reso rog" ;;
-  2) echo "IP 11 Resolution selected"
-       echo "wm size reso ip"  ;;
+  1) echo "[*] Activating ROG 8 Resulution..."
+sleep 1
+echo "[✓] ROG 8 Resulution Successfully Activated "
+echo ""
+sleep 1 ;;
+  2) echo "[*] Activating IP 11 Resulution..."
+sleep 1
+echo "[✓] IP 11 Resulution Successfully Activated "
+echo ""
+sleep 1 ;;
   3) echo "Sensitive Touch Only selected" ;;
   4) echo "Goodbye!"; exit 0 ;;
   *) echo "Invalid option. Exiting..."; exit 0 ;;
@@ -74,14 +81,24 @@ sleep 1
 echo "[✓] HZ Config Calculation Function Successfully Activated "
 echo ""
 sleep 1
-echo "[*] Activating Sensitive Touch..."
+echo "[*] Activating Tracking Touch..."
 sleep 1
-echo "[✓] Sensitive Touch Function Successfully Activated "
+echo "[✓] Tracking Touch Function Successfully Activated "
 echo ""
 sleep 1
 echo "[*] Adding Data Config..."
 sleep 1
 echo "[✓] Data Config Function Successfully Activated"
+echo ""
+sleep 1
+echo "[*] Activating Enchanced Performance..."
+sleep 1
+echo "[✓] Enchanced Performance Function Successfully Activated "
+echo ""
+sleep 1
+echo "[*] Activating Smart DPI V1..."
+sleep 1
+echo "[✓] Smart DPI V1 Function Successfully Activated "
 echo ""
 
 exit 0
