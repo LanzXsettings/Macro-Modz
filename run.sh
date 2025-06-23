@@ -51,6 +51,7 @@ echo ""
 
 read -r option
 echo ""
+echo ""
 
 # Exit if no input
 if [ -z "$option" ]; then
