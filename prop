@@ -66,13 +66,6 @@ props >/dev/null 2>&1
     settings put global post_install_config_epoch non_publicly_stable
     settings put global activity_starts_logging_enabled false
     settings put global game_driver_opt_in_apps 1
-    settings put global game_driver_prerelease_opt_in_apps "$1"
-    cmd device_config put gpu_options allow_growth true
-    cmd device_config put gpu_options memory_fraction 0.9
-    cmd device_config put gpu_options performance_tuning true
-    cmd device_config put lmkd_native thrashing_limit_critical 200
-    cmd device_config put restricted_max_cpus 7
-    cmd device_config put graphics_throttling 0
 ) >/dev/null 2>&1
 
 cmdperf() {
@@ -112,3 +105,34 @@ net() {
     settings put global ble_scan_always_enabled 0
 }
 net >/dev/null 2>&1
+
+
+devopt() {
+cmd power set-adaptive-power-saver-enabled false
+cmd power set-fixed-performance-mode-enabled true
+cmd power set-mode 0
+
+# Override Thermal Status
+cmd thermalservice override-status 0
+
+# Restrict Google Play Services and IMS background activities
+for app in com.google.android.gms com.google.android.ims; do
+  cmd appops set $app RUN_IN_BACKGROUND ignore
+  cmd appops set $app RUN_ANY_IN_BACKGROUND ignore
+  cmd appops set $app START_FOREGROUND ignore
+  cmd appops set $app INSTANT_APP_START_FOREGROUND ignore
+done
+
+# Set Vulkan as the default renderer
+setprop debug.hwui.renderer vulkan
+setprop debug.renderengine.backend vulkan
+
+# Enable High-Performance Mode
+settings put system high_performance_mode_on 1
+settings put system power_save_type_performance 1
+
+# Disable Low Power Mode
+settings put global low_power_sticky 0
+settings put global low_power 0
+}
+devopt >/dev/null 2>&1
