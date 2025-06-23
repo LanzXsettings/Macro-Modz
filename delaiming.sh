@@ -1,29 +1,4 @@
-detect_game() {
-  if pm list packages | grep -q com.dts.freefireth; then
-    com.dts.freefireth
-  elif pm list packages | grep -q com.dts.freefiremax; then
-    com.dts.freefiremax
-  else
-    echo " Game Not Installed "
-  fi
-
-com.dts.freefireth() {
-
-{
-rm -rf /sdcard/Android/data/com.dts.freefireth/files/Meta-Android
-}
-
-com.dts.freefireth() }
-
-
-com.dts.freefiremax() {
-
-{
-rm -rf /sdcard/Android/data/com.dts.freefiremax/files/Meta-Android
-}
-
-com.dts.freefiremax() }
-
+#!/bin/sh
 
   cmd game downscale disable com.dts.freefireth
   cmd game downscale disable com.dts.freefiremax
