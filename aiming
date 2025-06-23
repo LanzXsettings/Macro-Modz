@@ -52,6 +52,10 @@ settings put secure long_press_timeout 120 > /dev/null 2>&1
 settings put secure multi_press_timeout 120 > /dev/null 2>&1
 
 fps_calibration() {
+pkg=("com.dts.freefireth" "com.dts.freefiremax")
+fps="$(dumpsys display | grep -Eo 'fps=[^.]+' | cut -f2 -d= | sort -n | uniq | tail -n1)" 2>/dev/null
+cmd game set --fps "$fps" "$pkg"
+cmd device_config put game_overlay "$pkg" fps="$fps"
 frame_cycle=$(echo "scale=10; 1 / $fps" | bc)
 frame_cycle_ns=$(printf "%.0f" $(echo "$frame_cycle * 1000000000" | bc | cut -d'.' -f1))
 phase_offset_ns=$(printf "%.0f" $(echo "$frame_cycle_ns / 4" | bc))
@@ -59,7 +63,8 @@ setprop debug.sf.high_fps_early_gl_phase_offset_ns "$phase_offset_ns"
 setprop debug.sf.high_fps_early_phase_offset_ns "$phase_offset_ns"
 setprop debug.sf.high_fps_late_app_phase_offset_ns "$phase_offset_ns"
 setprop debug.sf.high_fps_late_sf_phase_offset_ns "$phase_offset_ns"
-}> /dev/null
+}
+fps_calibration > /dev/null
 
 external_exe() {
 x1=$(expr $RANDOM % 1000 + 1)
