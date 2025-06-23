@@ -43,7 +43,7 @@ echo "Advanced Resolution Changer"
 echo "=============================="
 echo "1. ROG 8 Resolution"
 echo "2. IP 11 Resolution"
-echo "3. Sensitive Touch Only"
+echo "3. Extreme Sensitive Touch"
 echo "4. Exit"
 printf "Choose [1-4]: "
 
@@ -60,16 +60,20 @@ fi
 # Process input
 case "$option" in
   1) echo "[*] Activating ROG 8 Resulution..."
-sleep 1
-echo "[✓] ROG 8 Resulution Successfully Activated "
-echo ""
-sleep 1 ;;
+     sleep 1
+     echo "[✓] ROG 8 Resulution Successfully Activated "
+     echo ""
+     sleep 1 ;;
   2) echo "[*] Activating IP 11 Resulution..."
-sleep 1
-echo "[✓] IP 11 Resulution Successfully Activated "
-echo ""
-sleep 1 ;;
-  3) echo "Sensitive Touch Only selected" ;;
+     sleep 1
+     echo "[✓] IP 11 Resulution Successfully Activated "
+     echo ""
+     sleep 1 ;;
+  3) echo "[*] Activating Extreme Sensitive Touch..."
+     sleep 1
+     echo "[✓] Extreme Sensitive Touch Successfully Activated "
+     echo ""
+     sleep 1 ;;
   4) echo "Goodbye!"; exit 0 ;;
   *) echo "Invalid option. Exiting..."; exit 0 ;;
 esac
