@@ -22,16 +22,12 @@ get_device_info() {
     echo "         INFORMATION          "
     echo "=============================="
     echo ""
-
-    MODEL=$(getprop ro.product.model)
+    
     MANUFACTURER=$(getprop ro.product.manufacturer)
     ANDROID_VERSION=$(getprop ro.build.version.release)
-    DEVICE_NAME=$(getprop ro.product.device)
-
-    echo "Model           : $MODEL"
+    
     echo "Manufacturer    : $MANUFACTURER"
     echo "Android Version : $ANDROID_VERSION"
-    echo "Device Type     : $DEVICE_NAME"
     echo "Developer       : LanzSettings"
     echo "Credit          : Xay Citter"
     echo "File Version    : V1"
