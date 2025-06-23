@@ -32,15 +32,13 @@ get_device_info() {
     echo "File Type       : Medium"
 
     echo ""
-    echo "=============================="
-    echo ""
 }
 
 get_device_info
 
 # Menu
 echo "=============================="
-echo "  Advanced Resolution Changer "
+echo "Advanced Resolution Changer"
 echo "=============================="
 echo "1. ROG 8 Resolution"
 echo "2. IP 11 Resolution"
