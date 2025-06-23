@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 curl -fsSL https://raw.githubusercontent.com/LanzXsettings/Macro-Modz/resource/tes.sh | sh
 
@@ -24,13 +24,13 @@ get_device_info() {
     ANDROID_VERSION=$(getprop ro.build.version.release)
     DEVICE_NAME=$(getprop ro.product.device)
 
-    echo "Model          : $MODEL"
-    echo "Manufacturer   : $MANUFACTURER"
-    echo "Android Version: $ANDROID_VERSION"
-    echo "Device Type    : $DEVICE_NAME"
-    echo "File Version   : V1"
-    echo "File Type      : Medium"
-    
+    echo "Model           : $MODEL"
+    echo "Manufacturer    : $MANUFACTURER"
+    echo "Android Version : $ANDROID_VERSION"
+    echo "Device Type     : $DEVICE_NAME"
+    echo "File Version    : V1"
+    echo "File Type       : Medium"
+
     echo ""
     echo "=============================="
     echo ""
@@ -40,7 +40,7 @@ get_device_info
 
 # Menu
 echo "=============================="
-echo "Advanced Resolution Changer"
+echo "    Advanced Resolution Changer"
 echo "=============================="
 echo "1. ROG 8 Resolution"
 echo "2. IP 11 Resolution"
@@ -54,42 +54,53 @@ echo ""
 
 # Exit if no input
 if [ -z "$option" ]; then
-  echo "No input detected. Exiting..."
-  exit 0
+    echo "No input detected. Exiting..."
+    exit 0
 fi
 
 # Process input
 case "$option" in
-  1) echo ""
-     echo "[*] Activating ROG 8 Resulution..."
-     sleep 1
-     echo "[✓] ROG 8 Resulution Successfully Activated "
-     echo ""
-     sleep 1 ;;
-  2) echo "[*] Activating IP 11 Resulution..."
-     sleep 1
-     echo "[✓] IP 11 Resulution Successfully Activated "
-     echo ""
-     sleep 1 ;;
-  3) echo "[*] Activating Extreme Sensitive Touch..."
-     sleep 1
-     echo "[✓] Extreme Sensitive Touch Successfully Activated "
-     echo ""
-     sleep 1 ;;
-  4) echo "Goodbye!"; exit 0 ;;
-  *) echo "Invalid option. Exiting..."; exit 0 ;;
+    1)
+        echo "[*] Activating ROG 8 Resolution..."
+        sleep 1
+        echo "[✓] ROG 8 Resolution Successfully Activated"
+        echo ""
+        sleep 1
+        ;;
+    2)
+        echo "[*] Activating IP 11 Resolution..."
+        sleep 1
+        echo "[✓] IP 11 Resolution Successfully Activated"
+        echo ""
+        sleep 1
+        ;;
+    3)
+        echo "[*] Activating Extreme Sensitive Touch..."
+        sleep 1
+        echo "[✓] Extreme Sensitive Touch Successfully Activated"
+        echo ""
+        sleep 1
+        ;;
+    4)
+        echo "Goodbye!"
+        exit 0
+        ;;
+    *)
+        echo "Invalid option. Exiting..."
+        exit 0
+        ;;
 esac
 
 # Only runs for valid options 1-3
 echo ""
 echo "[*] Activating HZ Config Calculation..."
 sleep 1
-echo "[✓] HZ Config Calculation Function Successfully Activated "
+echo "[✓] HZ Config Calculation Function Successfully Activated"
 echo ""
 sleep 1
 echo "[*] Activating Tracking Touch..."
 sleep 1
-echo "[✓] Tracking Touch Function Successfully Activated "
+echo "[✓] Tracking Touch Function Successfully Activated"
 echo ""
 sleep 1
 echo "[*] Adding Data Config..."
@@ -97,14 +108,14 @@ sleep 1
 echo "[✓] Data Config Function Successfully Activated"
 echo ""
 sleep 1
-echo "[*] Activating Enchanced Performance..."
+echo "[*] Activating Enhanced Performance..."
 sleep 1
-echo "[✓] Enchanced Performance Function Successfully Activated "
+echo "[✓] Enhanced Performance Function Successfully Activated"
 echo ""
 sleep 1
 echo "[*] Activating Smart DPI V1..."
 sleep 1
-echo "[✓] Smart DPI V1 Function Successfully Activated "
+echo "[✓] Smart DPI V1 Function Successfully Activated"
 echo ""
 
 exit 0
