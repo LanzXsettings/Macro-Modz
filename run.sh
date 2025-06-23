@@ -76,7 +76,6 @@ case "$option" in
 esac
 
 # Only runs for valid options 1-3
-echo ""
 echo "[*] Activating HZ Config Calculation..."
 sleep 1
 echo "[✓] HZ Config Calculation Function Successfully Activated "
