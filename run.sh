@@ -48,7 +48,6 @@ echo "4. Exit"
 printf "Choose [1-4]: "
 
 read -r option
-echo ""
 
 # Exit if no input
 if [ -z "$option" ]; then
