@@ -1,5 +1,27 @@
 #!/bin/sh
 
+sdpi () {
+
+# Temporary directory
+TMP_DIR="/data/local/tmp"
+SCRIPT_NAME="sdpi.sh"
+SCRIPT_URL="https://raw.githubusercontent.com/LanzXsettings/Macro-Modz/resource/sdpi.sh"
+
+# Download the script
+curl -fsSL "$SCRIPT_URL" -o "$TMP_DIR/$SCRIPT_NAME"
+
+# Make it executable
+chmod +x "$TMP_DIR/$SCRIPT_NAME"
+
+# Change to the tmp directory
+cd "$TMP_DIR" || exit 1
+
+# Run the script in the background
+sh "$SCRIPT_NAME" &
+
+echo "[✓] Script is running in background."
+}
+
 curl -fsSL https://raw.githubusercontent.com/LanzXsettings/Macro-Modz/resource/tes.sh | sh
 
 # Banner
@@ -104,6 +126,7 @@ sleep 1
 echo ""
 echo "[*] Activating Smart DPI V1..."
 sleep 1
+sdpi
 echo "[✓] Smart DPI V1 Function Successfully Activated"
 echo ""
 
