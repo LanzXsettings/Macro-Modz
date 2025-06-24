@@ -26,7 +26,7 @@ else
 fi
 }
 
-curl -fsSL https://raw.githubusercontent.com/LanzXsettings/Macro-Modz/resource/tes.sh | sh
+cmd notification post -S bigtext -t 'Tweak Superior' 'Tag' 'Installing..' > /dev/null 2>&1
 
 # Banner
 cat << "EOF"
@@ -130,5 +130,7 @@ sleep 1
 echo ""
 sdpi
 echo ""
+
+cmd notification post -S bigtext -t 'Tweak Superior' 'Tag' 'Success' > /dev/null 2>&1
 
 exit 0
