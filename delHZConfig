@@ -1,0 +1,40 @@
+#!/bin/sh
+
+rmv() {
+# Reset duration-based properties
+setprop debug.sf.use_phase_offsets_as_durations 0
+setprop debug.sf.late.sf.duration ""
+setprop debug.sf.late.app.duration ""
+setprop debug.sf.early.sf.duration ""
+setprop debug.sf.early.app.duration ""
+setprop debug.sf.earlyGl.sf.duration ""
+setprop debug.sf.earlyGl.app.duration ""
+
+# Reset offset-related properties
+setprop debug.sf.disable_client_composition_cache 0
+setprop debug.sf.early_phase_offset_ns ""
+setprop debug.sf.early_gl_phase_offset_ns ""
+setprop debug.sf.high_fps_late_app_phase_offset_ns ""
+setprop debug.sf.high_fps_late_sf_phase_offset_ns ""
+setprop debug.sf.high_fps_early_phase_offset_ns ""
+setprop debug.sf.high_fps_early_gl_phase_offset_ns ""
+
+android_version=$(getprop ro.build.version.release)
+major_version=$(echo "$android_version" | cut -d. -f1)
+
+if [ "$major_version" -lt 12 ]; then
+    echo "Resetting legacy Game Driver settings (Android < 12)..."
+    settings delete global game_driver_all_apps
+    settings delete global game_driver_opt_out_apps
+    settings delete global game_driver_opt_in_apps
+elif [ "$major_version" -ge 12 ]; then
+    echo "Resetting updatable Game Driver settings (Android 12+)..."
+    settings delete global updatable_driver_all_apps
+    settings delete global updatable_driver_production_opt_out_apps
+    settings delete global updatable_driver_production_opt_in_apps
+else
+    echo "Unsupported Android version: $android_version"
+fi
+}
+
+rmv > /dev/null 2>&1
