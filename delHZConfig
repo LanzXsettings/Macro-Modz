@@ -1,7 +1,7 @@
 #!/bin/sh
 
 rmv() {
-# Reset duration-based properties
+# reset duration
 setprop debug.sf.use_phase_offsets_as_durations 0
 setprop debug.sf.late.sf.duration ""
 setprop debug.sf.late.app.duration ""
@@ -10,7 +10,7 @@ setprop debug.sf.early.app.duration ""
 setprop debug.sf.earlyGl.sf.duration ""
 setprop debug.sf.earlyGl.app.duration ""
 
-# Reset offset-related properties
+# reset offset
 setprop debug.sf.disable_client_composition_cache 0
 setprop debug.sf.early_phase_offset_ns ""
 setprop debug.sf.early_gl_phase_offset_ns ""
