@@ -1,0 +1,67 @@
+defhertz=$(settings get secure user_refresh_rate)
+
+if [ "$1" == "--force" ]; then
+    refreshrate=${2:-${defhertz:-60}}
+else
+    refreshrate=${defhertz:-60}
+fi
+
+
+if [ -z $refreshrate ]; then
+ echo "SurfaceFlinger is not compatible"
+ return 0
+fi
+
+echo "SurfaceFlinger for ${refreshrate}hz"
+
+case "$refreshrate" in
+ "60")
+  offset=-10416666
+  ;;
+ "90")
+  offset=-7407407
+  ;;
+ "120")
+  offset=-3787878
+  ;;
+ "165")
+  offset=-3367003
+  ;;
+ *)
+  echo "${refreshrate}hz is not available"
+  ;;
+esac
+
+set_durations() {
+    local hertz=$1
+    local frame_duration_ns=$((1000000000 / hertz))
+
+    local late_sf_duration=$((frame_duration_ns * 2 / 3))
+    local late_app_duration=$((frame_duration_ns * 5 / 3))
+    local early_sf_duration=$((frame_duration_ns * 5 / 3))
+    local early_app_duration=$((frame_duration_ns))
+    local earlyGl_sf_duration=$((frame_duration_ns * 4 / 3))
+    local earlyGl_app_duration=$((frame_duration_ns * 5 / 3))
+
+    setprop debug.sf.use_phase_offsets_as_durations 1
+    setprop debug.sf.late.sf.duration $late_sf_duration
+    setprop debug.sf.late.app.duration $late_app_duration
+    setprop debug.sf.early.sf.duration $early_sf_duration
+    setprop debug.sf.early.app.duration $early_app_duration
+    setprop debug.sf.earlyGl.sf.duration $earlyGl_sf_duration
+    setprop debug.sf.earlyGl.app.duration $earlyGl_app_duration
+    echo "SurfaceX duration applied"
+}
+
+set_durations $refreshrate
+
+if [ -n "$offset" ]; then
+ setprop debug.sf.disable_client_composition_cache 1
+ setprop debug.sf.early_phase_offset_ns $offset
+ setprop debug.sf.early_gl_phase_offset_ns $offset
+ setprop debug.sf.high_fps_late_app_phase_offset_ns 0
+ setprop debug.sf.high_fps_late_sf_phase_offset_ns $offset
+ setprop debug.sf.high_fps_early_phase_offset_ns $offset
+ setprop debug.sf.high_fps_early_gl_phase_offset_ns $offset
+ echo "SurfaceX offset applied"
+fi
