@@ -18,9 +18,7 @@ EOF
 # Function to get and display device information
 get_device_info() {
     echo ""
-    echo "=============================="
-    echo "         INFORMATION          "
-    echo "=============================="
+    echo " [ Information ] "
     echo ""
     
     MANUFACTURER=$(getprop ro.product.manufacturer)
@@ -33,16 +31,12 @@ get_device_info() {
     echo "File Version    : V1"
     echo "File Type       : Medium"
     echo ""
-    echo "=============================="
-    echo ""
 }
 
 get_device_info
 
 # Menu
-echo "=============================="
-echo "  Advanced Resolution Changer"
-echo "=============================="
+echo " [ Advanced Resolution ] "
 echo ""
 echo "1. Medium Resolution"
 echo "2. Extreme Resolution"
@@ -51,10 +45,8 @@ echo "4. Extreme Sensitive Touch"
 echo "5. Exit"
 printf "Choose [1-5]: \n"
 echo ""
-echo "=============================="
 
 read -r option
-echo ""
 
 # Exit if no input
 if [ -z "$option" ]; then
@@ -100,19 +92,9 @@ esac
 
 # Only runs for valid options 1-3
 echo ""
-echo "[*] Activating HZ Config Calculation..."
-sleep 1
-echo "[✓] HZ Config Calculation Function Successfully Activated"
-sleep 1
-echo ""
 echo "[*] Activating Tracking Touch..."
 sleep 1
 echo "[✓] Tracking Touch Function Successfully Activated"
-sleep 1
-echo ""
-echo "[*] Adding Data Config..."
-sleep 1
-echo "[✓] Data Config Function Successfully Activated"
 sleep 1
 echo ""
 echo "[*] Activating Enhanced Performance..."
