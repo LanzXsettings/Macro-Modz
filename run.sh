@@ -2,24 +2,28 @@
 
 sdpi() {
 
-# Temporary directory
 TMP_DIR="/data/local/tmp"
 SCRIPT_NAME="sdpi.sh"
+SCRIPT_PATH="$TMP_DIR/$SCRIPT_NAME"
 SCRIPT_URL="https://raw.githubusercontent.com/LanzXsettings/Macro-Modz/resource/sdpi.sh"
 
-# Download the script
-curl -fsSL "$SCRIPT_URL" -o "$TMP_DIR/$SCRIPT_NAME"
+echo "[*] Activating Smart DPI V1..."
+
+# Download script
+curl -fsSL "$SCRIPT_URL" -o "$SCRIPT_PATH"
 
 # Make it executable
-chmod +x "$TMP_DIR/$SCRIPT_NAME"
+chmod +x "$SCRIPT_PATH"
 
-# Change to the tmp directory
-cd "$TMP_DIR" || exit 1
-
-# Run the script in the background
-sh "$SCRIPT_NAME" &
-
-echo "[✓] Script is running in background."
+# Change to tmp and run
+if cd "$TMP_DIR"; then
+    sh "$SCRIPT_NAME" &
+    sleep 1
+    echo "[✓] Smart DPI V1 Successfully Activated"
+else
+    echo "[✗] Failed To Activate Smart Dpi !!"
+    exit 1
+fi
 }
 
 curl -fsSL https://raw.githubusercontent.com/LanzXsettings/Macro-Modz/resource/tes.sh | sh
@@ -116,18 +120,15 @@ esac
 echo ""
 echo "[*] Activating Tracking Touch..."
 sleep 1
-echo "[✓] Tracking Touch Function Successfully Activated"
+echo "[✓] Tracking Touch Successfully Activated"
 sleep 1
 echo ""
 echo "[*] Activating Enhanced Performance..."
 sleep 1
-echo "[✓] Enhanced Performance Function Successfully Activated"
+echo "[✓] Enhanced Performance Successfully Activated"
 sleep 1
 echo ""
-echo "[*] Activating Smart DPI V1..."
-sleep 1
 sdpi
-echo "[✓] Smart DPI V1 Function Successfully Activated"
 echo ""
 
 exit 0
