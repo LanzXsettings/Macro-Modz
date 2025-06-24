@@ -14,14 +14,14 @@ while true; do
 
     if [ -n "$pid1" ] || [ -n "$pid2" ]; then
         if [ "$STATE" = "stopped" ]; then
-            cmd notification post -S bigtext -t 'SMART DPI BY LANZSETTINGS' 'Tag' 'ACTIVE' > /dev/null 2>&1
-            wm density 354
+            cmd notification post -S bigtext -t 'Smart Dpi By Lanzsettings' 'Tag' 'ACTIVE' > /dev/null 2>&1
+            
             STATE="running"
         fi
     else
         if [ "$STATE" = "running" ]; then
-            cmd notification post -S bigtext -t 'SMART DPI BY LANZSETTINGS' 'Tag' 'NON ACTIVE' > /dev/null 2>&1
-            wm density reset
+            cmd notification post -S bigtext -t 'Smart Dpi By Lanzsettings' 'Tag' 'NON ACTIVE' > /dev/null 2>&1
+            
             STATE="stopped"
         fi
     fi
