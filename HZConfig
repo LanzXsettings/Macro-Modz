@@ -1,67 +1,64 @@
-defhertz=$(settings get secure user_refresh_rate)
+#!/bin/sh
 
-if [ "$1" == "--force" ]; then
-    refreshrate=${2:-${defhertz:-60}}
+hz () {
+
+# get user refresh rate
+refreshrate=$(settings get secure user_refresh_rate)
+
+if [ -z "$refreshrate" ]; then
+    refreshrate=0
+    offset=-16666667  # no hertz detected, use fallback offset
 else
-    refreshrate=${defhertz:-60}
+    refreshrate=${refreshrate:-60}
+
+    case "$refreshrate" in
+        "60")  offset=-10416666 ;;
+        "90")  offset=-7407407 ;;
+        "120") offset=-3787878 ;;
+        "165") offset=-3367003 ;;
+        *)     offset=-3367003 ;;  # higher hertz fallback
+    esac
 fi
 
-
-if [ -z $refreshrate ]; then
- echo "SurfaceFlinger is not compatible"
- return 0
-fi
-
-echo "SurfaceFlinger for ${refreshrate}hz"
-
-case "$refreshrate" in
- "60")
-  offset=-10416666
-  ;;
- "90")
-  offset=-7407407
-  ;;
- "120")
-  offset=-3787878
-  ;;
- "165")
-  offset=-3367003
-  ;;
- *)
-  echo "${refreshrate}hz is not available"
-  ;;
-esac
-
+# main script
 set_durations() {
     local hertz=$1
+    [ "$hertz" -le 0 ] && hertz=60
     local frame_duration_ns=$((1000000000 / hertz))
 
-    local late_sf_duration=$((frame_duration_ns * 2 / 3))
-    local late_app_duration=$((frame_duration_ns * 5 / 3))
-    local early_sf_duration=$((frame_duration_ns * 5 / 3))
-    local early_app_duration=$((frame_duration_ns))
-    local earlyGl_sf_duration=$((frame_duration_ns * 4 / 3))
-    local earlyGl_app_duration=$((frame_duration_ns * 5 / 3))
-
     setprop debug.sf.use_phase_offsets_as_durations 1
-    setprop debug.sf.late.sf.duration $late_sf_duration
-    setprop debug.sf.late.app.duration $late_app_duration
-    setprop debug.sf.early.sf.duration $early_sf_duration
-    setprop debug.sf.early.app.duration $early_app_duration
-    setprop debug.sf.earlyGl.sf.duration $earlyGl_sf_duration
-    setprop debug.sf.earlyGl.app.duration $earlyGl_app_duration
-    echo "SurfaceX duration applied"
+    setprop debug.sf.late.sf.duration $((frame_duration_ns * 2 / 3))
+    setprop debug.sf.late.app.duration $((frame_duration_ns * 5 / 3))
+    setprop debug.sf.early.sf.duration $((frame_duration_ns * 5 / 3))
+    setprop debug.sf.early.app.duration $((frame_duration_ns))
+    setprop debug.sf.earlyGl.sf.duration $((frame_duration_ns * 4 / 3))
+    setprop debug.sf.earlyGl.app.duration $((frame_duration_ns * 5 / 3))
 }
 
-set_durations $refreshrate
+set_durations "$refreshrate"
 
-if [ -n "$offset" ]; then
- setprop debug.sf.disable_client_composition_cache 1
- setprop debug.sf.early_phase_offset_ns $offset
- setprop debug.sf.early_gl_phase_offset_ns $offset
- setprop debug.sf.high_fps_late_app_phase_offset_ns 0
- setprop debug.sf.high_fps_late_sf_phase_offset_ns $offset
- setprop debug.sf.high_fps_early_phase_offset_ns $offset
- setprop debug.sf.high_fps_early_gl_phase_offset_ns $offset
- echo "SurfaceX offset applied"
+# surface offset
+setprop debug.sf.disable_client_composition_cache 1
+setprop debug.sf.early_phase_offset_ns "$offset"
+setprop debug.sf.early_gl_phase_offset_ns "$offset"
+setprop debug.sf.high_fps_late_app_phase_offset_ns 0
+setprop debug.sf.high_fps_late_sf_phase_offset_ns "$offset"
+setprop debug.sf.high_fps_early_phase_offset_ns "$offset"
+setprop debug.sf.high_fps_early_gl_phase_offset_ns "$offset"
+
+# game tweaks
+android_version=$(getprop ro.build.version.release)
+version_numbers=$(echo "$android_version" | grep -o '[0-9]\+' | head -n1)
+system_output="com.dts.freefireth,com.dts.freefiremax"
+
+if [ "$version_numbers" -lt 12 ]; then
+    settings put global game_driver_all_apps 1
+    settings put global game_driver_opt_out_apps 1
+    settings put global game_driver_opt_in_apps "$system_output"
+else
+    settings put global updatable_driver_all_apps 1
+    settings put global updatable_driver_production_opt_out_apps ""
+    settings put global updatable_driver_production_opt_in_apps "$system_output"
 fi
+}
+hz > /dev/null 2>&1
