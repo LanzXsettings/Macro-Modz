@@ -51,9 +51,9 @@ get_device_info() {
 
 get_device_info
 
-echo "[*] Deactivating Ultimate Resolution..."
+echo "[*] Resetting Menu Options..."
 sleep 1
-echo "[✓] Ultimate Resolution Successfully Deactivated"
+echo "[✓] Menu Options Successfully Resetted"
 sleep 1
 echo ""
 echo "[*] Deactivating Tracking Touch..."
