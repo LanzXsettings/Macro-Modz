@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sdpi () {
+sdpi() {
 
 # Temporary directory
 TMP_DIR="/data/local/tmp"
