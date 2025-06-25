@@ -99,21 +99,21 @@ case "$option" in
     1)
         echo "[*] Activating Medium Resolution..."
         sleep 1
-        wm size 1792 x 828
+        wm size 828x1792
         echo "[✓] Medium Resolution Successfully Activated"
         sleep 1
         ;;
     2)
         echo "[*] Activating Extreme Resolution..."
         sleep 1
-        wm size 2400 x 1080
+        wm size 1080x2400
         echo "[✓] Extreme Resolution Successfully Activated"
         sleep 1
         ;;
     3)
         echo "[*] Activating Ultimate Resolution..."
         sleep 1
-        wm size 2560 x 1440
+        wm size 1440x2560
         echo "[✓] Ultimate Resolution Successfully Activated"
         sleep 1
         ;;
