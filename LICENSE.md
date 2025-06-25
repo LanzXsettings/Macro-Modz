@@ -6,7 +6,7 @@ All rights reserved.
 
 IMPORTANT: PLEASE READ THIS LICENSE CAREFULLY BEFORE USING THIS SOFTWARE.
 
-This End User License Agreement ("Agreement") is a legal agreement between you (the "User") and xaycit ("Author"), the copyright holder of the software titled "Macro Modz Resource" (the "Software").
+This End User License Agreement ("Agreement") is a legal agreement between you (the "User") and Lanzsettings ("Author"), the copyright holder of the software titled "Macro Modz Resource" (the "Software").
 
 By downloading, installing, or using the Software, you agree to be bound by the terms of this Agreement. If you do not agree to the terms of this Agreement, do not install, use, or distribute the Software.
 
