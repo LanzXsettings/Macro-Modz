@@ -1,7 +1,7 @@
     #!/bin/sh
 
-prop="https://raw.githubusercontent.com/xaycit/resource/main/tesprop.sh"
-aiming="https://raw.githubusercontent.com/xaycit/resource/main/tesaim.sh"
+prop="https://raw.githubusercontent.com/xaycit/resource/main/prop.sh"
+aiming="https://raw.githubusercontent.com/xaycit/resource/main/aiming.sh"
 
 execprop() {
 sh -c "$(curl -fsSL "$prop")"
@@ -99,24 +99,29 @@ case "$option" in
     1)
         echo "[*] Activating Medium Resolution..."
         sleep 1
+        wm size 1792 x 828
         echo "[✓] Medium Resolution Successfully Activated"
         sleep 1
         ;;
     2)
         echo "[*] Activating Extreme Resolution..."
         sleep 1
+        wm size 2400 x 1080
         echo "[✓] Extreme Resolution Successfully Activated"
         sleep 1
         ;;
     3)
         echo "[*] Activating Ultimate Resolution..."
         sleep 1
+        wm size 2560 x 1440
         echo "[✓] Ultimate Resolution Successfully Activated"
         sleep 1
         ;;
     4)
         echo "[*] Activating Extreme Sensitive Touch..."
         sleep 1
+        settings put secure long_press_timeout 90 > /dev/null 2>&1
+        settings put secure multi_press_timeout 90 > /dev/null 2>&1
         echo "[✓] Extreme Sensitive Touch Successfully Activated"
         sleep 1
         ;;
