@@ -69,7 +69,7 @@ get_device_info() {
     echo "Developer       : LanzSettings"
     echo "Credit          : Xay Citter"
     echo "File Version    : V1"
-    echo "File Type       : Medium"
+    echo "File Type       : Ultimate"
     echo ""
 }
 
