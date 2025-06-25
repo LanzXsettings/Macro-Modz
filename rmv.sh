@@ -93,8 +93,11 @@ sleep 1
 echo "[✓] Enhanced Performance Successfully Deactivated"
 sleep 1
 echo ""
+echo "[*] Deactivating Smart DPI V1..."
 sdpi
+sleep 1
 echo ""
+echo "[✓] Smart DPI V1 Successfully Deactivated"
 
 cmd notification post -S bigtext -t 'Tweak Superior' 'Tag' 'Success' > /dev/null 2>&1
 
