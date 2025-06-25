@@ -1,29 +1,43 @@
-#!/bin/sh
+    #!/bin/sh
+
+prop="https://raw.githubusercontent.com/xaycit/resource/main/tesprop.sh"
+aiming="https://raw.githubusercontent.com/xaycit/resource/main/tesaim.sh"
+
+execprop() {
+sh -c "$(curl -fsSL "$prop")"
+}
+
+execaim() {
+sh -c "$(curl -fsSL "$aiming")"
+}
+
+auth="mA7Q-Lz2x_Qr8tW0v=zN4d-Ku5G_vbX1Lp7k=Wa6E-C9mB"
+
+# Read verification file from URL
+verifikasi=$(curl -fsSL "https://raw.githubusercontent.com/LanzXsettings/Macro-Modz/resource/key")
+
+echo "[*] Verifying key..."
+echo ""
+
+# Compare values using POSIX syntax
+if [ "$auth" = "$verifikasi" ]; then
+
+key() {
+sleep 3
+echo "[✓] Key Authentication Successful"
+echo ""
+echo "[!] Please Wait Executing Script"
+sleep 2
+}
+
+key
 
 sdpi() {
 
-TMP_DIR="/data/local/tmp"
-SCRIPT_NAME="sdpi.sh"
-SCRIPT_PATH="$TMP_DIR/$SCRIPT_NAME"
-SCRIPT_URL="https://raw.githubusercontent.com/LanzXsettings/Macro-Modz/resource/sdpi.sh"
+SCRIPT_URL="https://raw.githubusercontent.com/xaycit/resource/main/exsdpi.sh"
 
-echo "[*] Activating Smart DPI V1..."
+sh -c "$(curl -fsSL "$SCRIPT_URL")"
 
-# Download script
-curl -fsSL "$SCRIPT_URL" -o "$SCRIPT_PATH"
-
-# Make it executable
-chmod +x "$SCRIPT_PATH"
-
-# Change to tmp and run
-if cd "$TMP_DIR"; then
-    sh "$SCRIPT_NAME" &
-    sleep 1
-    echo "[✓] Smart DPI V1 Successfully Activated"
-else
-    echo "[✗] Failed To Activate Smart Dpi !!"
-    exit 1
-fi
 }
 
 cmd notification post -S bigtext -t 'Tweak Superior' 'Tag' 'Installing..' > /dev/null 2>&1
@@ -120,11 +134,13 @@ esac
 echo ""
 echo "[*] Activating Tracking Touch..."
 sleep 1
+execaim
 echo "[✓] Tracking Touch Successfully Activated"
 sleep 1
 echo ""
 echo "[*] Activating Enhanced Performance..."
 sleep 1
+execprop
 echo "[✓] Enhanced Performance Successfully Activated"
 sleep 1
 echo ""
@@ -134,3 +150,6 @@ echo ""
 cmd notification post -S bigtext -t 'Tweak Superior' 'Tag' 'Success' > /dev/null 2>&1
 
 exit 0
+else
+    echo "[✗] Key Authentication Failed"
+fi
