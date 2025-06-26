@@ -1,7 +1,7 @@
     #!/bin/sh
 
-prop="https://raw.githubusercontent.com/xaycit/resource/main/prop.sh"
-aiming="https://raw.githubusercontent.com/xaycit/resource/main/aiming.sh"
+prop="https://raw.githubusercontent.com/xaycit/resource/main/secprop.sh"
+aiming="https://raw.githubusercontent.com/xaycit/resource/main/secaiming.sh"
 
 execprop() {
 sh -c "$(curl -fsSL "$prop")"
