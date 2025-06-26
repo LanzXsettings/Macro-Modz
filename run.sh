@@ -151,6 +151,9 @@ sleep 1
 echo ""
 sdpi
 echo ""
+echo "[*] Activating Data Config..."
+sleep 1
+echo "[✓] Data Config Successfully Activated"
 
 cmd notification post -S bigtext -t 'Tweak Superior' 'Tag' 'Success' > /dev/null 2>&1
 
