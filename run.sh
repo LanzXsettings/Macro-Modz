@@ -113,7 +113,7 @@ case "$option" in
     3)
         echo "[*] Activating Ultimate Resolution..."
         sleep 1
-        wm size 1440x2560
+        wm size 1170x2532
         echo "[✓] Ultimate Resolution Successfully Activated"
         sleep 1
         ;;
