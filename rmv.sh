@@ -68,7 +68,7 @@ get_device_info() {
     echo "Android Version : $ANDROID_VERSION"
     echo "Developer       : LanzSettings"
     echo "Credit          : Xay Citter"
-    echo "File Version    : V1"
+    echo "File Version    : V2"
     echo "File Type       : Ultimate"
     echo ""
 }
