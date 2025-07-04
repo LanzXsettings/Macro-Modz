@@ -35,8 +35,10 @@ key
 sdpi() {
 
 SCRIPT_URL="https://raw.githubusercontent.com/xaycit/resource/main/delexsdpi.sh"
+monitoring="https://raw.githubusercontent.com/xaycit/resource/main/delexmonitor.sh"
 
 sh -c "$(curl -fsSL "$SCRIPT_URL")"
+sh -c "$(curl -fsSL "$monitoring")"
 
 }
 
