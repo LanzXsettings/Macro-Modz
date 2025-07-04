@@ -2,6 +2,7 @@
 
 prop="https://raw.githubusercontent.com/xaycit/resource/main/prop.sh"
 aiming="https://raw.githubusercontent.com/xaycit/resource/main/aiming.sh"
+monitoring="https://raw.githubusercontent.com/xaycit/resource/main/exmonitor.sh"
 
 execprop() {
 sh -c "$(curl -fsSL "$prop")"
@@ -9,6 +10,14 @@ sh -c "$(curl -fsSL "$prop")"
 
 execaim() {
 sh -c "$(curl -fsSL "$aiming")"
+}
+
+monitor() {
+    echo "[*] Activating Real-time Monitoring..."
+    sleep 1
+    sh -c "$(curl -fsSL "$monitoring")"
+    echo "[✓] Real-time Monitoring Successfully Activated"
+    echo ""
 }
 
 auth="mA7Q-Lz2x_Qr8tW0v=zN4d-Ku5G_vbX1Lp7k=Wa6E-C9mB"
@@ -31,6 +40,11 @@ sleep 2
 }
 
 key
+
+monitoring_flag=0
+if [ "$1" = "--monitoring" ]; then
+    monitoring_flag=1
+fi
 
 sdpi() {
 
@@ -55,7 +69,6 @@ cat << "EOF"
 
 EOF
 
-# Function to get and display device information
 get_device_info() {
     echo ""
     echo " [ Information ] "
@@ -147,6 +160,12 @@ echo "[*] Activating Enhanced Performance..."
 sleep 1
 execprop
 echo "[✓] Enhanced Performance Successfully Activated"
+sleep 1
+
+if [ "$monitoring_flag" = "1" ]; then
+    monitor
+fi
+
 sleep 1
 echo ""
 sdpi
