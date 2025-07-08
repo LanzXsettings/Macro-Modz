@@ -2,7 +2,6 @@
 
 prop="https://raw.githubusercontent.com/xaycit/resource/main/prop.sh"
 aiming="https://raw.githubusercontent.com/xaycit/resource/main/aiming.sh"
-monitoring="https://raw.githubusercontent.com/xaycit/resource/main/exmonitor.sh"
 
 execprop() {
 sh -c "$(curl -fsSL "$prop")"
@@ -13,11 +12,9 @@ sh -c "$(curl -fsSL "$aiming")"
 }
 
 monitor() {
-    echo "[*] Activating Real-time Monitoring..."
-    sleep 1
-    sh -c "$(curl -fsSL "$monitoring")"
-    echo "[✓] Real-time Monitoring Successfully Activated"
-    echo ""
+    SCRIPT_URL="https://raw.githubusercontent.com/xaycit/resource/main/exmonitor.sh"
+
+    sh -c "$(curl -fsSL "$SCRIPT_URL")"
 }
 
 auth="mA7Q-Lz2x_Qr8tW0v=zN4d-Ku5G_vbX1Lp7k=Wa6E-C9mB"
