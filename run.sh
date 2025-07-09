@@ -55,9 +55,9 @@ fi
 
 sdpi() {
 
-SCRIPT_URL="https://raw.githubusercontent.com/xaycit/resource/main/exsdpi.sh"
+SCRIPT_SDPI="https://raw.githubusercontent.com/xaycit/resource/main/exsdpi.sh"
 
-sh -c "$(curl -fsSL "$SCRIPT_URL")"
+fetch "$SCRIPT_SDPI" | sh
 
 }
 
