@@ -120,6 +120,8 @@ case "$option" in
         echo "[*] Activating Medium Resolution..."
         sleep 1
         wm size 828x1792
+        settings put secure long_press_timeout 130 > /dev/null 2>&1
+        settings put secure multi_press_timeout 130 > /dev/null 2>&1
         echo "[✓] Medium Resolution Successfully Activated"
         sleep 1
         ;;
@@ -127,6 +129,8 @@ case "$option" in
         echo "[*] Activating Extreme Resolution..."
         sleep 1
         wm size 1080x2400
+        settings put secure long_press_timeout 130 > /dev/null 2>&1
+        settings put secure multi_press_timeout 130 > /dev/null 2>&1
         echo "[✓] Extreme Resolution Successfully Activated"
         sleep 1
         ;;
@@ -134,6 +138,8 @@ case "$option" in
         echo "[*] Activating Ultimate Resolution..."
         sleep 1
         wm size 1170x2532
+        settings put secure long_press_timeout 130 > /dev/null 2>&1
+        settings put secure multi_press_timeout 130 > /dev/null 2>&1
         echo "[✓] Ultimate Resolution Successfully Activated"
         sleep 1
         ;;
