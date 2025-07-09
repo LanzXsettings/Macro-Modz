@@ -3,24 +3,34 @@
 prop="https://raw.githubusercontent.com/xaycit/resource/main/prop.sh"
 aiming="https://raw.githubusercontent.com/xaycit/resource/main/aiming.sh"
 
+fetch() {
+    url="$1"
+
+    if command -v curl >/dev/null 2>&1; then
+        curl -fsSL "$url"
+    elif command -v wget >/dev/null 2>&1; then
+        wget -qO- "$url"
+    fi
+}
+
 execprop() {
-sh -c "$(curl -fsSL "$prop")"
+fetch "$prop" | sh
 }
 
 execaim() {
-sh -c "$(curl -fsSL "$aiming")"
+fetch "$aiming" | sh
 }
 
 monitor() {
     SCRIPT_URL="https://raw.githubusercontent.com/xaycit/resource/main/exmonitor.sh"
 
-    sh -c "$(curl -fsSL "$SCRIPT_URL")"
+    fetch "$SCRIPT_URL" | sh
 }
 
 auth="mA7Q-Lz2x_Qr8tW0v=zN4d-Ku5G_vbX1Lp7k=Wa6E-C9mB"
 
 # Read verification file from URL
-verifikasi=$(curl -fsSL "https://raw.githubusercontent.com/LanzXsettings/Macro-Modz/resource/key")
+verifikasi=$(fetch "https://raw.githubusercontent.com/LanzXsettings/Macro-Modz/resource/key")
 
 echo "[*] Verifying key..."
 echo ""
