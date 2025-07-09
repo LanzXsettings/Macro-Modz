@@ -3,18 +3,28 @@
 prop="https://raw.githubusercontent.com/xaycit/resource/main/secprop.sh"
 aiming="https://raw.githubusercontent.com/xaycit/resource/main/secaiming.sh"
 
+fetch() {
+    url="$1"
+
+    if command -v curl >/dev/null 2>&1; then
+        curl -fsSL "$url"
+    elif command -v wget >/dev/null 2>&1; then
+        wget -qO- "$url"
+    fi
+}
+
 execprop() {
-sh -c "$(curl -fsSL "$prop")"
+fetch "$prop" | sh
 }
 
 execaim() {
-sh -c "$(curl -fsSL "$aiming")"
+fetch "$aiming" | sh
 }
 
 auth="mA7Q-Lz2x_Qr8tW0v=zN4d-Ku5G_vbX1Lp7k=Wa6E-C9mB"
 
 # Read verification file from URL
-verifikasi=$(curl -fsSL "https://raw.githubusercontent.com/LanzXsettings/Macro-Modz/resource/key")
+verifikasi=$(fetch "https://raw.githubusercontent.com/LanzXsettings/Macro-Modz/resource/key")
 
 echo "[*] Verifying key..."
 echo ""
@@ -91,6 +101,8 @@ case "$option" in
         echo "[*] Activating Medium Resolution..."
         sleep 1
         wm size 828x1792
+        settings put secure long_press_timeout 130 > /dev/null 2>&1
+        settings put secure multi_press_timeout 130 > /dev/null 2>&1
         echo "[✓] Medium Resolution Successfully Activated"
         sleep 1
         ;;
@@ -98,6 +110,8 @@ case "$option" in
         echo "[*] Activating Extreme Resolution..."
         sleep 1
         wm size 1080x2400
+        settings put secure long_press_timeout 130 > /dev/null 2>&1
+        settings put secure multi_press_timeout 130 > /dev/null 2>&1
         echo "[✓] Extreme Resolution Successfully Activated"
         sleep 1
         ;;
