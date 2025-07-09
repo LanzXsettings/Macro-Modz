@@ -49,7 +49,9 @@ sleep 2
 key
 
 monitoring_flag=0
-if [ "$1" = "--monitoring" ]; then
+arg="$1"
+
+if [ "$arg" = "--monitoring" ]; then
     monitoring_flag=1
 fi
 
