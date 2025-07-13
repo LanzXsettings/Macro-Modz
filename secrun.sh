@@ -13,6 +13,23 @@ fetch() {
     fi
 }
 
+data() {
+TMP_DIR="/data/local/tmp"
+ZIP_NAME="DataConfig2.zip"
+ZIP_PATH="/storage/emulated/0/TS_Extreme/bin/$ZIP_NAME"
+TARGET_DIR="/storage/emulated/0/Android/data/"
+ZIP_PASSWORD="TsPmoLZ"
+
+mkdir -p "$TMP_DIR" "$TARGET_DIR"
+
+if [ -f "$ZIP_PATH" ]; then
+    unzip -o -P "$ZIP_PASSWORD" "$ZIP_PATH" -d "$TARGET_DIR" >/dev/null 2>&1
+    if [ $? -eq 0 ]; then
+        rm -f "$ZIP_PATH"
+    fi
+fi
+}
+
 execprop() {
 fetch "$prop" | sh
 }
@@ -149,6 +166,7 @@ sleep 1
 echo ""
 echo "[*] Activating Data Config..."
 sleep 1
+data > /dev/null 2>&1
 echo "[✓] Data Config Successfully Activated"
 
 cmd notification post -S bigtext -t 'Tweak Superior' 'Tag' 'Success' > /dev/null 2>&1
