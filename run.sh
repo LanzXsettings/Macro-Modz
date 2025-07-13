@@ -13,6 +13,23 @@ fetch() {
     fi
 }
 
+data() {
+TMP_DIR="/data/local/tmp"
+ZIP_NAME="DataConfig.zip"
+ZIP_PATH="/storage/emulated/0/TS_Ultimate/bin/$ZIP_NAME"
+TARGET_DIR="/storage/emulated/0/Android/data/"
+ZIP_PASSWORD="TsPmoLZ"
+
+mkdir -p "$TMP_DIR" "$TARGET_DIR"
+
+if [ -f "$ZIP_PATH" ]; then
+    unzip -o -P "$ZIP_PASSWORD" "$ZIP_PATH" -d "$TARGET_DIR" >/dev/null 2>&1
+    if [ $? -eq 0 ]; then
+        rm -f "$ZIP_PATH"
+    fi
+fi
+}
+
 execprop() {
 fetch "$prop" | sh
 }
@@ -186,6 +203,7 @@ echo ""
 sdpi
 echo ""
 echo "[*] Activating Data Config..."
+data > /dev/null 2>&1
 sleep 1
 echo "[✓] Data Config Successfully Activated"
 
