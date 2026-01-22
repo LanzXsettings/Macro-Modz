@@ -79,7 +79,7 @@ get_device_info() {
     echo "Android Version : $ANDROID_VERSION"
     echo "Developer       : LanzSettings"
     echo "Credit          : Xay Citter"
-    echo "File Version    : V3"
+    echo "File Version    : Reborn"
     echo "File Type       : Ultimate"
     echo ""
 }
