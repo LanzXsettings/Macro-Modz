@@ -1,66 +1,67 @@
 #!/bin/sh
 
-hz () {
+hz() {
 
-# get user refresh rate
-refreshrate=$(settings get secure user_refresh_rate)
+    # ================= GET REFRESH RATE ================= #
+    refreshrate=$(settings get secure user_refresh_rate)
 
-if [ -z "$refreshrate" ]; then
-    refreshrate=0
-    offset=-16666667  # no hertz detected, use fallback offset
-else
-    refreshrate=${refreshrate:-60}
+    if [ -z "$refreshrate" ] || [ "$refreshrate" = "null" ]; then
+        refreshrate=60
+        offset=-16666667
+    else
+        case "$refreshrate" in
+            60)  offset=-10416666 ;;
+            90)  offset=-7407407 ;;
+            120) offset=-3787878 ;;
+            165) offset=-3367003 ;;
+            *)   offset=-3367003 ;;
+        esac
+    fi
 
-    case "$refreshrate" in
-        "60")  offset=-10416666 ;;
-        "90")  offset=-7407407 ;;
-        "120") offset=-3787878 ;;
-        "165") offset=-3367003 ;;
-        *)     offset=-3367003 ;;  # higher hertz fallback
-    esac
-fi
+    # ================= DURATION CONFIG ================= #
+    set_durations() {
+        hertz="$1"
+        [ "$hertz" -le 0 ] 2>/dev/null && hertz=60
 
-# main script
-set_durations() {
-    local hertz=$1
-    [ "$hertz" -le 0 ] && hertz=60
-    local frame_duration_ns=$((1000000000 / hertz))
+        frame_duration_ns=$((1000000000 / hertz))
 
-    setprop debug.sf.use_phase_offsets_as_durations 1
-    setprop debug.sf.late.sf.duration $((frame_duration_ns * 2 / 3))
-    setprop debug.sf.late.app.duration $((frame_duration_ns * 5 / 3))
-    setprop debug.sf.early.sf.duration $((frame_duration_ns * 5 / 3))
-    setprop debug.sf.early.app.duration $((frame_duration_ns))
-    setprop debug.sf.earlyGl.sf.duration $((frame_duration_ns * 4 / 3))
-    setprop debug.sf.earlyGl.app.duration $((frame_duration_ns * 5 / 3))
+        setprop debug.sf.use_phase_offsets_as_durations 1
+        setprop debug.sf.late.sf.duration $((frame_duration_ns * 2 / 3))
+        setprop debug.sf.late.app.duration $((frame_duration_ns * 5 / 3))
+        setprop debug.sf.early.sf.duration $((frame_duration_ns * 5 / 3))
+        setprop debug.sf.early.app.duration "$frame_duration_ns"
+        setprop debug.sf.earlyGl.sf.duration $((frame_duration_ns * 4 / 3))
+        setprop debug.sf.earlyGl.app.duration $((frame_duration_ns * 5 / 3))
+    }
+
+    set_durations "$refreshrate"
+
+    # ================= SURFACE FLINGER OFFSET ================= #
+    setprop debug.sf.disable_client_composition_cache 1
+    setprop debug.sf.early_phase_offset_ns "$offset"
+    setprop debug.sf.early_gl_phase_offset_ns "$offset"
+    setprop debug.sf.high_fps_late_app_phase_offset_ns 0
+    setprop debug.sf.high_fps_late_sf_phase_offset_ns "$offset"
+    setprop debug.sf.high_fps_early_phase_offset_ns "$offset"
+    setprop debug.sf.high_fps_early_gl_phase_offset_ns "$offset"
+
+    # ================= CLEAR GAME CACHE (ROOT ONLY) ================= #
+    rm -rf /storage/emulated/0/Android/data/com.dts.freefireth/cache/* 2>/dev/null
+    rm -rf /storage/emulated/0/Android/data/com.dts.freefiremax/cache/* 2>/dev/null
+
+    # ================= GAME DRIVER CONFIG ================= #
+    android_version=$(getprop ro.build.version.release | grep -o '[0-9]\+' | head -n1)
+    game_pkgs="com.dts.freefireth,com.dts.freefiremax"
+
+    if [ "$android_version" -lt 12 ]; then
+        settings put global game_driver_all_apps 1
+        settings put global game_driver_opt_out_apps ""
+        settings put global game_driver_opt_in_apps "$game_pkgs"
+    else
+        settings put global updatable_driver_all_apps 1
+        settings put global updatable_driver_production_opt_out_apps ""
+        settings put global updatable_driver_production_opt_in_apps "$game_pkgs"
+    fi
 }
 
-set_durations "$refreshrate"
-
-# surface offset
-setprop debug.sf.disable_client_composition_cache 1
-setprop debug.sf.early_phase_offset_ns "$offset"
-setprop debug.sf.early_gl_phase_offset_ns "$offset"
-setprop debug.sf.high_fps_late_app_phase_offset_ns 0
-setprop debug.sf.high_fps_late_sf_phase_offset_ns "$offset"
-setprop debug.sf.high_fps_early_phase_offset_ns "$offset"
-setprop debug.sf.high_fps_early_gl_phase_offset_ns "$offset"
-rm -rf /storage/emulated/0/Android/data/com.dts.freefireth/cache/*
-rm -rf /storage/emulated/0/Android/data/com.dts.freefiremax/cache/*
-
-# game tweaks
-android_version=$(getprop ro.build.version.release)
-version_numbers=$(echo "$android_version" | grep -o '[0-9]\+' | head -n1)
-system_output="com.dts.freefireth,com.dts.freefiremax"
-
-if [ "$version_numbers" -lt 12 ]; then
-    settings put global game_driver_all_apps 1
-    settings put global game_driver_opt_out_apps 1
-    settings put global game_driver_opt_in_apps "$system_output"
-else
-    settings put global updatable_driver_all_apps 1
-    settings put global updatable_driver_production_opt_out_apps ""
-    settings put global updatable_driver_production_opt_in_apps "$system_output"
-fi
-}
-hz > /dev/null 2>&1
+hz >/dev/null 2>&1
