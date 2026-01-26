@@ -91,7 +91,7 @@ cat << "EOF"
 ░█░ ▀▄▀▄▀ ██▄ █▀█ █░█
 
 █▀ █░█ █▀█ █▀▀ █▀█ █ █▀█ █▀█
-▄█ █▄█ █▀▀ ██▄ █▀▄ █ █▄█ █▀▄ 𝙇𝙕 𝙭 𝙓𝘾
+▄█ █▄█ █▀▀ ██▄ █▀▄ █ █▄█ █▀▄ 𝗿𝗲𝗯𝗼𝗿𝗻
 
 EOF
 
@@ -106,8 +106,7 @@ get_device_info() {
     echo "Manufacturer    : $MANUFACTURER"
     echo "Android Version : $ANDROID_VERSION"
     echo "Developer       : LanzSettings"
-    echo "Credit          : Xay Citter"
-    echo "File Version    : Reborn"
+    echo "File Version    : V1"
     echo "File Type       : Ultimate"
     echo ""
 }
