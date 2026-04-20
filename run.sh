@@ -46,8 +46,8 @@ net() {
 }
 
 FFTN() {
-cmd device_config put game_overlay "$TH" mode=2,downscaleFactor=0.9
-cmd device_config put game_overlay "$MAX" mode=2,downscaleFactor=0.9
+cmd device_config put game_overlay "$TH" mode=2,downscaleFactor=2.0
+cmd device_config put game_overlay "$MAX" mode=2,downscaleFactor=2.0
 settings put secure long_press_timeout 80 > /dev/null 2>&1
 settings put secure multi_press_timeout 50 > /dev/null 2>&1
 settings put global window_animation_scale 0
