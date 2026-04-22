@@ -160,7 +160,7 @@ other_menu() {
             echo "sh /sdcard/TS_Extreme/run.sh"
             echo "2"
             echo "1"
-            return
+            exit 0
             ;;
     esac
 
