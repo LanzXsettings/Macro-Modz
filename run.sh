@@ -194,7 +194,7 @@ other_menu() {
             echo "sh /sdcard/TS_Ultimate/run.sh"
             echo "2"
             echo "1"
-            return
+            exit 0
             ;;
     esac
 
@@ -289,6 +289,7 @@ if [ "$monitoring_flag" = "1" ]; then
 fi
 
 sleep 1
+echo ""
 echo "[*] Activating Data Config..."
 data > /dev/null 2>&1
 sleep 1
