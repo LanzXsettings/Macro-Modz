@@ -3,6 +3,9 @@
 prop="https://raw.githubusercontent.com/xaycit/resource/main/prop.sh"
 aiming="https://raw.githubusercontent.com/xaycit/resource/main/aiming.sh"
 
+TH="com.dts.freefireth"
+MAX="com.dts.freefiremax"
+
 fetch() {
     url="$1"
 
@@ -19,8 +22,6 @@ ZIP_NAME="DataConfig.zip"
 ZIP_PATH="/storage/emulated/0/TS_Ultimate/bin/$ZIP_NAME"
 TARGET_DIR="/storage/emulated/0/Android/data/"
 ZIP_PASSWORD="TsPmoLZ"
-TH="com.dts.freefireth"
-MAX="com.dts.freefiremax"
 
 mkdir -p "$TMP_DIR" "$TARGET_DIR"
 
@@ -30,6 +31,11 @@ if [ -f "$ZIP_PATH" ]; then
         rm -f "$ZIP_PATH"
     fi
 fi
+}
+
+sdpi() {
+    SCRIPT_SDPI="https://raw.githubusercontent.com/xaycit/resource/main/exsdpi.sh"
+    fetch "$SCRIPT_SDPI" | sh
 }
 
 net() {
@@ -46,8 +52,8 @@ net() {
 }
 
 FFTN() {
-cmd device_config put game_overlay "$TH" mode=2,downscaleFactor=2.0
-cmd device_config put game_overlay "$MAX" mode=2,downscaleFactor=2.0
+cmd device_config put game_overlay "$TH" mode=2,downscaleFactor=0.9
+cmd device_config put game_overlay "$MAX" mode=2,downscaleFactor=0.9
 settings put secure long_press_timeout 80 > /dev/null 2>&1
 settings put secure multi_press_timeout 50 > /dev/null 2>&1
 settings put global window_animation_scale 0
@@ -180,6 +186,7 @@ other_menu() {
             sleep 1
             FFTN > /dev/null 2>&1
             echo "[✓] FF Tweaks Successfully Activated"
+            sleep 1
             ;;
         3)
             echo "[*] Activating Network Tweaks..."
@@ -194,7 +201,7 @@ other_menu() {
             echo "sh /sdcard/TS_Ultimate/run.sh"
             echo "2"
             echo "1"
-            exit 0
+            return
             ;;
     esac
 
@@ -267,12 +274,6 @@ echo "[✓] Enhanced Performance Successfully Activated"
 sleep 1
 
 echo ""
-echo "[*] Activating Ingame Compiler..."
-sleep 2
-echo "[✓] Ingame Compiler Successfully Activated"
-sleep 1
-
-echo ""
 echo "[*] Stabilizing Free Fire FPS..."
 sleep 2
 echo "[✓] Free Fire FPS Successfully Stabilized"
@@ -289,6 +290,8 @@ if [ "$monitoring_flag" = "1" ]; then
 fi
 
 sleep 1
+echo ""
+sdpi
 echo ""
 echo "[*] Activating Data Config..."
 data > /dev/null 2>&1
