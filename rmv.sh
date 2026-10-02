@@ -53,10 +53,10 @@ key
 sdpi() {
 
 SCRIPT_URL="https://raw.githubusercontent.com/xaycit/resource/main/delexsdpi.sh"
-monitoring="https://raw.githubusercontent.com/xaycit/resource/main/delexmonitor.sh"
+MONITORING_URL="https://raw.githubusercontent.com/xaycit/resource/main/delexmonitor.sh"
 
 fetch "$SCRIPT_URL" | sh
-fetch "$monitoring" | sh
+fetch "$MONITORING_URL" | sh
 }
 
 cmd notification post -S bigtext -t 'Tweak Superior' 'Tag' 'Uninstalling..' > /dev/null 2>&1
