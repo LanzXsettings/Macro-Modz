@@ -78,7 +78,7 @@ get_device_info() {
     echo "Android Version : $ANDROID_VERSION"
     echo "Developer       : LanzSettings"
     echo "File Version    : V2"
-    echo "File Type       : Extreme"
+    echo "File Type       : Sec"
     echo ""
 }
 
@@ -90,12 +90,6 @@ sleep 1
 wm size reset
 tune
 echo "[✓] Menu Options Successfully Reset"
-sleep 1
-
-echo ""
-echo "[*] Disabling Smoother UI..."
-sleep 2
-echo "[✓] Smoother UI Successfully Disabled"
 sleep 1
 
 echo ""

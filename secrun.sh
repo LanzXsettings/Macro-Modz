@@ -160,7 +160,7 @@ other_menu() {
             echo "sh /sdcard/TS_Extreme/run.sh"
             echo "2"
             echo "1"
-            exit 0
+            return
             ;;
     esac
 
@@ -205,12 +205,6 @@ esac
 }
 
 script() {
-
-echo ""
-echo "[*] Activating Smoother UI..."
-sleep 2
-echo "[✓] Smoother UI Successfully Activated"
-sleep 1
 
 echo ""
 echo "[*] Activating Tracking Touch..."
@@ -293,4 +287,5 @@ script
 exit 0
 else
     echo "[✗] Key Authentication Failed"
+    exit 1
 fi
